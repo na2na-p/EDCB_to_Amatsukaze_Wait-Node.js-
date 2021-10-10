@@ -1,8 +1,8 @@
 {
-  "name": "amatsukaze_wait",
+  "name": "edcb_to_amatsukaze_wait-node.js-",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
