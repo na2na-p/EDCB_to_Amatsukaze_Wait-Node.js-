@@ -1,0 +1,14 @@
+{
+  "name": "amatsukaze_wait",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "na2na",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^4.2.0"
+  }
+}
