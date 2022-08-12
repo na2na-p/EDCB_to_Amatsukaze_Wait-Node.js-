@@ -1,3 +1,5 @@
+# WIP
+
 # EDCB_to_Amatsukaze_Wait-Node.js-
 以前に作成した物のNode.js版です。前の物はセットアップも煩雑で、不具合も多かったため作り直しました。  
 EDCBの録画終了後バッチからAmatsukazeServerへ渡すためのものです。  
