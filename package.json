@@ -1,14 +1,26 @@
 {
-  "name": "edcb_to_amatsukaze_wait-node.js-",
-  "version": "1.0.0",
-  "description": "",
-  "main": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "na2na",
-  "license": "ISC",
-  "dependencies": {
-    "sqlite3": "^4.2.0"
-  }
+	"name": "edcb_to_amatsukaze_wait-node.js-",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "",
+	"scripts": {
+		"insert": "node --loader ts-node/esm src/insert.ts"
+	},
+	"author": "na2na",
+	"license": "ISC",
+	"dependencies": {
+		"@prisma/client": "4.2.1",
+		"@swc/core": "^1.2.226",
+		"ts-node": "^10.9.1"
+	},
+	"devDependencies": {
+		"@types/node": "^18.7.2",
+		"@typescript-eslint/eslint-plugin": "^5.33.0",
+		"@typescript-eslint/parser": "^5.33.0",
+		"eslint": ">=5.16.0",
+		"eslint-config-google": "^0.14.0",
+		"prisma": "^4.2.1",
+		"typescript": "^4.7.4"
+	}
 }
