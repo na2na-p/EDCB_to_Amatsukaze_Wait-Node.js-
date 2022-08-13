@@ -2,8 +2,7 @@
 import {PrismaClient, recordHistory} from '@prisma/client';
 const prisma = new PrismaClient();
 import {execa} from 'execa';
-import config from './config/config.json' assert {type: 'json'};
-import encodeSettings from './config/encode_settings.json' assert {type: 'json'};
+import {generalConfig, encodePreset} from './config/config.js';
 
 import {postMisskey} from './postMisskey.js';
 
@@ -50,7 +49,7 @@ class Send {
 	}
 
 	private async sendRecord(record: recordHistory) {
-		this.command = `"${config.AddTaskPath}" -r "${config.AmatsukazeRoot}" -f "${record.recordedPath}" -ip "${config.serverip}" -p ${config.port} -o "${config.saveFolder}" -s "${encodeSettings[record.encodePresetId]}" --priority 3 --no-move` as const;
+		this.command = `"${generalConfig.AddTaskPath}" -r "${generalConfig.AmatsukazeRoot}" -f "${record.recordedPath}" -ip "${generalConfig.serverIp}" -p ${generalConfig.port} -o "${generalConfig.saveFolder}" -s "${encodePreset[record.encodePresetId]}" --priority 3 --no-move` as const;
 		await execa(this.command);
 	}
 
