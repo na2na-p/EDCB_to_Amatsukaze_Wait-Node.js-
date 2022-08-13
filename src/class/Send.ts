@@ -23,9 +23,8 @@ export class Send {
 			try {
 				this.records.forEach(async (record) => {
 					try {
-						this.sendRecord(record).then(() => {
-							this.succeedRecordIds.push(record.recId);
-						});
+						this.succeedRecordIds.push(record.recId);
+						this.sendRecord(record);
 					} catch (error) {
 					}
 				});
@@ -51,14 +50,9 @@ export class Send {
 
 	private async sendRecord(record: recordHistory) {
 		const command = ['-r', `${generalConfig.AmatsukazeRoot}`, '-f', `${record.recordedPath}`, '-ip', `${generalConfig.serverIp}`, '-p', `${generalConfig.port}`, '-o', `${generalConfig.saveFolder}`, '-s', `${encodePreset[record.encodePresetId]}`, '--priority', '3', '--no-move'] as const;
-		console.log(command);
-		const {stdout} = await execa(`"${generalConfig.AddTaskPath}"`, command);
-		// stdoutをSHIFT-JISからUTF-8に変換
-		const stdoutUtf8 = stdout.replace(/[\u0080-\u00ff]/g, (c) => {
-			return String.fromCharCode(c.charCodeAt(0) - 0x80);
-		}).replace(/\r\n/g, '\n');
-		console.log(stdoutUtf8);
+		await execa(`"${generalConfig.AddTaskPath}"`, command);
 	}
+
 
 	private async sendMisskeyNotify() {
 		try {
@@ -69,8 +63,7 @@ export class Send {
 	};
 
 	private async updateRecords() {
-		console.log(this.succeedRecordIds);
-		const recs = await prisma.recordHistory.updateMany({
+		await prisma.recordHistory.updateMany({
 			where: {
 				recId: {
 					in: this.succeedRecordIds,
@@ -80,6 +73,5 @@ export class Send {
 				isEncoded: true,
 			},
 		});
-		console.log(recs);
 	}
 }
