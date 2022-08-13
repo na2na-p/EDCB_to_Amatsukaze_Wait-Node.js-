@@ -29,7 +29,7 @@ export class Send {
 					}
 				});
 				this.message = `${this.records.length}件のエンコードを開始します。\n${this.records.map((record) => {
-					return record.title;
+					return `- ${record.title}\n`;
 				}).join('\n')}` as const;
 			} catch (error) {
 				this.message = `${error}` as const;
