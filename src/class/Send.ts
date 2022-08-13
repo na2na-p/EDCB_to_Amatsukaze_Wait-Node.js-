@@ -8,7 +8,6 @@ import {postMisskey} from '../postMisskey.js';
 
 export class Send {
 	private records: recordHistory[] = [];
-	private command: string = '';
 	private message: string = '';
 	private succeedRecordIds: number[] = [];
 
@@ -24,20 +23,21 @@ export class Send {
 			try {
 				this.records.forEach(async (record) => {
 					try {
-						await this.sendRecord(record);
 						this.succeedRecordIds.push(record.recId);
+						this.sendRecord(record);
 					} catch (error) {
 					}
 				});
 				this.message = `${this.records.length}件のエンコードを開始します。\n${this.records.map((record) => {
-					return record.title;
+					return `- ${record.title}\n`;
 				}).join('\n')}` as const;
 			} catch (error) {
 				this.message = `${error}` as const;
 			}
-			await this.updateRecords(); // 待たなくていいのでawait無し
+			this.updateRecords().then(() => {
+				this.sendMisskeyNotify(); // 待たなくていいのでawait無し
+			});
 		}
-		this.sendMisskeyNotify(); // 同上
 	}
 
 	private async getRecords() {
@@ -50,14 +50,9 @@ export class Send {
 
 	private async sendRecord(record: recordHistory) {
 		const command = ['-r', `${generalConfig.AmatsukazeRoot}`, '-f', `${record.recordedPath}`, '-ip', `${generalConfig.serverIp}`, '-p', `${generalConfig.port}`, '-o', `${generalConfig.saveFolder}`, '-s', `${encodePreset[record.encodePresetId]}`, '--priority', '3', '--no-move'] as const;
-		console.log(command);
-		const {stdout} = await execa(`"${generalConfig.AddTaskPath}"`, command);
-		// stdoutをSHIFT-JISからUTF-8に変換
-		const stdoutUtf8 = stdout.replace(/[\u0080-\u00ff]/g, (c) => {
-			return String.fromCharCode(c.charCodeAt(0) - 0x80);
-		}).replace(/\r\n/g, '\n');
-		console.log(stdoutUtf8);
+		await execa(`"${generalConfig.AddTaskPath}"`, command);
 	}
+
 
 	private async sendMisskeyNotify() {
 		try {
@@ -77,10 +72,6 @@ export class Send {
 			data: {
 				isEncoded: true,
 			},
-		}).then(() => {
-			return;
-		}).catch((error) => {
-			console.log(error);
 		});
 	}
 }
