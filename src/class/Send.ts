@@ -23,8 +23,9 @@ export class Send {
 			try {
 				this.records.forEach(async (record) => {
 					try {
-						await this.sendRecord(record);
-						this.succeedRecordIds.push(record.recId);
+						this.sendRecord(record).then(() => {
+							this.succeedRecordIds.push(record.recId);
+						});
 					} catch (error) {
 					}
 				});
@@ -34,9 +35,10 @@ export class Send {
 			} catch (error) {
 				this.message = `${error}` as const;
 			}
-			await this.updateRecords();
+			this.updateRecords().then(() => {
+				this.sendMisskeyNotify(); // 待たなくていいのでawait無し
+			});
 		}
-		this.sendMisskeyNotify(); // 待たなくていいのでawait無し
 	}
 
 	private async getRecords() {
@@ -67,7 +69,8 @@ export class Send {
 	};
 
 	private async updateRecords() {
-		await prisma.recordHistory.updateMany({
+		console.log(this.succeedRecordIds);
+		const recs = await prisma.recordHistory.updateMany({
 			where: {
 				recId: {
 					in: this.succeedRecordIds,
@@ -76,10 +79,7 @@ export class Send {
 			data: {
 				isEncoded: true,
 			},
-		}).then(() => {
-			return;
-		}).catch((error) => {
-			console.log(error);
 		});
+		console.log(recs);
 	}
 }
