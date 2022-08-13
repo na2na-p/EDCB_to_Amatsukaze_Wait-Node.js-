@@ -7,6 +7,9 @@ async function getRecords() {
 			isEncoded: false,
 		},
 	});
+	if (records.length === 0) {
+		return 'エンコード待ちはありません。';
+	}
 	return records;
 }
 
