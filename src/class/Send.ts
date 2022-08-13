@@ -49,8 +49,10 @@ export class Send {
 	}
 
 	private async sendRecord(record: recordHistory) {
-		this.command = `"${generalConfig.AddTaskPath}" -r "${generalConfig.AmatsukazeRoot}" -f "${record.recordedPath}" -ip "${generalConfig.serverIp}" -p ${generalConfig.port} -o "${generalConfig.saveFolder}" -s "${encodePreset[record.encodePresetId]}" --priority 3 --no-move` as const;
-		console.log(await execa(this.command));
+		const command = ['-r', `${generalConfig.AmatsukazeRoot}`, '-f', `${record.recordedPath}`, '-ip', `${generalConfig.serverIp}`, '-p', `${generalConfig.port}`, '-o', `${generalConfig.saveFolder}`, '-s', `${encodePreset[record.encodePresetId]}`, '--priority', '3', '--no-move'] as const;
+		console.log(command);
+		const {stdout} = await execa(`"${generalConfig.AddTaskPath}"`, command);
+		console.log(stdout);
 	}
 
 	private async sendMisskeyNotify() {
