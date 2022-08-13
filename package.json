@@ -5,8 +5,9 @@
 	"type": "module",
 	"main": "",
 	"scripts": {
-		"insert": "node --loader ts-node/esm src/insert.ts",
-		"scheduledExecution": "node --loader ts-node/esm src/send.ts",
+		"install": "yarn tsc -p tsconfig.json",
+		"insert": "node built/insert.js",
+		"scheduledExecution": "node built/send.js",
 		"migrate": "yarn prisma migrate deploy",
 		"lint": "yarn eslint --ext .js,.ts .",
 		"lint:fix": "yarn eslint --ext .js,.ts . --fix",

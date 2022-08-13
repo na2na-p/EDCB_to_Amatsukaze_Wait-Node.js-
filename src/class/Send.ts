@@ -35,7 +35,7 @@ export class Send {
 			} catch (error) {
 				this.message = `${error}` as const;
 			}
-			this.updateRecords(); // 待たなくていいのでawait無し
+			await this.updateRecords(); // 待たなくていいのでawait無し
 		}
 		this.sendMisskeyNotify(); // 同上
 	}
@@ -52,7 +52,11 @@ export class Send {
 		const command = ['-r', `${generalConfig.AmatsukazeRoot}`, '-f', `${record.recordedPath}`, '-ip', `${generalConfig.serverIp}`, '-p', `${generalConfig.port}`, '-o', `${generalConfig.saveFolder}`, '-s', `${encodePreset[record.encodePresetId]}`, '--priority', '3', '--no-move'] as const;
 		console.log(command);
 		const {stdout} = await execa(`"${generalConfig.AddTaskPath}"`, command);
-		console.log(stdout);
+		// stdoutをSHIFT-JISからUTF-8に変換
+		const stdoutUtf8 = stdout.replace(/[\u0080-\u00ff]/g, (c) => {
+			return String.fromCharCode(c.charCodeAt(0) - 0x80);
+		}).replace(/\r\n/g, '\n');
+		console.log(stdoutUtf8);
 	}
 
 	private async sendMisskeyNotify() {
@@ -73,6 +77,10 @@ export class Send {
 			data: {
 				isEncoded: true,
 			},
+		}).then(() => {
+			return;
+		}).catch((error) => {
+			console.log(error);
 		});
 	}
 }
