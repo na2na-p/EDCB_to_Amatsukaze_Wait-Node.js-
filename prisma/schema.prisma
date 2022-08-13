@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db/rec_history.db"
+}
+
+model recordHistory {
+  recId            Int      @id @default(autoincrement())
+  title            String
+  recordedPath     String
+  recordingDateEnd DateTime
+  encodePresetId   Int
+  isEncoded        Boolean  @default(false)
+}

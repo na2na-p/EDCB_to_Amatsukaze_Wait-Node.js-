@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "incremental": false,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "allowJs": false,
+    "rootDir": "src",
+    "typeRoots": ["src/@types", "node_modules/@types"],
+    "baseUrl": ".",
+    "outDir": "./built",
+    "declaration": true,
+    "removeComments": true,
+    "noEmitOnError": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "noLib": false,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@modules/*": ["src/modules/*"],
+      "@config/*": [".config/*"],
+      "@utils/*": ["src/utils/*"]
+    }
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "transpiler": "ts-node/transpilers/swc-experimental"
+  },
+  "include": ["./src/**/*.ts"]
+}

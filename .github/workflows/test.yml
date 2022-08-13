@@ -1,0 +1,21 @@
+name: Vitest
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  Vitest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Config
+        run: cp config/config.json.sample config/config.json && cp config/encode_settings.json.sample config/encode_settings.json
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: Vitest
+        run: yarn test

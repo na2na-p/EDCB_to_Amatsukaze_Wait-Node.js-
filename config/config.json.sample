@@ -1,0 +1,9 @@
+{
+	"AddTaskPath": "ローカル上のAmatsukazeAddTask.exeまでのフルパスを入れる。例は下にある通り。",
+	"AmatsukazeRoot": "ローカル上のAmatsukazeのルートフォルダを指定する。",
+	"serverIp": "エンコード鯖のIPを指定する",
+	"port": "エンコード鯖側のAmatsukazeのポート番号を指定する。多くの場合、32768",
+	"saveFolder": "F:\\Media\\TV録画\\mp4",
+	"misskeyEndpoint": "https://example.com/api/notes/create",
+	"i": "Misskey API Token"
+}

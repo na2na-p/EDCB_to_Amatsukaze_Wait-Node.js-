@@ -1,0 +1,6 @@
+built
+node_modules
+note
+encode_settings.json
+config.json
+prisma/db
