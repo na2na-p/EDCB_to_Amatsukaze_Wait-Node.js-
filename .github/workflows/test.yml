@@ -1,10 +1,10 @@
-name: mocha
+name: Vitest
 on:
   push:
     branches-ignore:
       - main
 jobs:
-  mocha:
+  Vitest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,9 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: ci
+      - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
-      - name: build
-        run: yarn build
-      - name: mocha
+      - name: Vitest
         run: yarn test
