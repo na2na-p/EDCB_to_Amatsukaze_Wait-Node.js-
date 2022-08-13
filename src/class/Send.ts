@@ -24,7 +24,6 @@ export class Send {
 			try {
 				this.records.forEach(async (record) => {
 					try {
-						console.log(record);
 						await this.sendRecord(record);
 						this.succeedRecordIds.push(record.recId);
 					} catch (error) {
@@ -51,7 +50,7 @@ export class Send {
 
 	private async sendRecord(record: recordHistory) {
 		this.command = `"${generalConfig.AddTaskPath}" -r "${generalConfig.AmatsukazeRoot}" -f "${record.recordedPath}" -ip "${generalConfig.serverIp}" -p ${generalConfig.port} -o "${generalConfig.saveFolder}" -s "${encodePreset[record.encodePresetId]}" --priority 3 --no-move` as const;
-		await execa(this.command);
+		console.log(await execa(this.command));
 	}
 
 	private async sendMisskeyNotify() {
