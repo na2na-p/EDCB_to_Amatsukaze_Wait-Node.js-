@@ -8,7 +8,6 @@ import {postMisskey} from '../postMisskey.js';
 
 export class Send {
 	private records: recordHistory[] = [];
-	private command: string = '';
 	private message: string = '';
 	private succeedRecordIds: number[] = [];
 
