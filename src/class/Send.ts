@@ -22,6 +22,7 @@ export class Send {
 			this.message = 'エンコードする録画がありません。';
 		} else {
 			try {
+				console.log(this.records);
 				this.records.forEach(async (record) => {
 					try {
 						await this.sendRecord(record);
