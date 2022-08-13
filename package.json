@@ -5,7 +5,9 @@
 	"type": "module",
 	"main": "",
 	"scripts": {
-		"insert": "node --loader ts-node/esm src/insert.ts"
+		"insert": "node --loader ts-node/esm src/insert.ts",
+		"scheduledExecution": "node --loader ts-node/esm src/send.ts",
+		"migrate": "yarn prisma migrate deploy"
 	},
 	"author": "na2na",
 	"license": "ISC",

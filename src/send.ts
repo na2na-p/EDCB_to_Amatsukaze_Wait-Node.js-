@@ -3,7 +3,7 @@ import {PrismaClient, recordHistory} from '@prisma/client';
 const prisma = new PrismaClient();
 import {execa} from 'execa';
 import config from './config/config.json' assert {type: 'json'};
-import encodeSettings from './config/encode_settings.json';
+import encodeSettings from './config/encode_settings.json' assert {type: 'json'};
 
 import {postMisskey} from './postMisskey.js';
 
@@ -11,6 +11,7 @@ class Send {
 	private records: recordHistory[] = [];
 	private command: string = '';
 	private message: string = '';
+	private succeedRecordIds: number[] = [];
 
 	constructor() {
 		this.sendMain();
@@ -18,17 +19,26 @@ class Send {
 
 	private async sendMain() {
 		await this.getRecords();
-		this.records.forEach(async (record) => {
+		if (this.records.length === 0) {
+			this.message = 'エンコードする録画がありません。';
+		} else {
 			try {
-				await this.sendRecord(record);
+				this.records.forEach(async (record) => {
+					try {
+						await this.sendRecord(record);
+						this.succeedRecordIds.push(record.recId);
+					} catch (error) {
+					}
+				});
 				this.message = `${this.records.length}件のエンコードを開始します。\n${this.records.map((record) => {
 					return record.title;
 				}).join('\n')}` as const;
 			} catch (error) {
 				this.message = `${error}` as const;
 			}
-			await this.sendMisskeyNotify();
-		});
+			this.updateRecords(); // 待たなくていいのでawait無し
+		}
+		this.sendMisskeyNotify(); // 同上
 	}
 
 	private async getRecords() {
@@ -51,6 +61,19 @@ class Send {
 			console.log(error);
 		}
 	};
+
+	private async updateRecords() {
+		await prisma.recordHistory.updateMany({
+			where: {
+				recId: {
+					in: this.succeedRecordIds,
+				},
+			},
+			data: {
+				isEncoded: true,
+			},
+		});
+	}
 }
 
 new Send();
