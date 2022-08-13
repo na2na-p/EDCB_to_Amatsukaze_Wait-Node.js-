@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+      - name: Config
+        run: cp config/config.json.sample config/config.json && cp config/encode_settings.json.sample config/encode_settings.json
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
       - name: Vitest
