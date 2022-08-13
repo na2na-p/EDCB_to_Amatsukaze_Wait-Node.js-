@@ -1,8 +1,5 @@
 name: ESLint
-on:
-  push:
-    branches-ignore:
-      - main
+on: push
 jobs:
   ESLint:
     runs-on: ubuntu-latest

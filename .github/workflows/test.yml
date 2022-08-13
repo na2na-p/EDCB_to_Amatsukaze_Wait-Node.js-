@@ -1,6 +1,5 @@
 name: Vitest
-on:
-  push:
+on: push
 jobs:
   Vitest:
     runs-on: ubuntu-latest
