@@ -34,9 +34,9 @@ export class Send {
 			} catch (error) {
 				this.message = `${error}` as const;
 			}
-			await this.updateRecords(); // 待たなくていいのでawait無し
+			await this.updateRecords();
 		}
-		this.sendMisskeyNotify(); // 同上
+		this.sendMisskeyNotify(); // 待たなくていいのでawait無し
 	}
 
 	private async getRecords() {
