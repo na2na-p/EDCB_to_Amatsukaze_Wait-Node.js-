@@ -4,7 +4,7 @@ import {postMisskey} from '../src/postMisskey.js';
 
 describe('post Misskey', () => {
 	test('Expected behavior', async () => (
-		expect(await postMisskey('test')).toBe(404)
+		expect(await postMisskey('test')).toBe(200)
 	));
 });
 

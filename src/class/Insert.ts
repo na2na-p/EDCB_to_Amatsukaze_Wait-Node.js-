@@ -13,21 +13,30 @@ export class Insert {
 			this.title = title;
 			this.recordedPath = recordedPath;
 			this.encodePresetId = encodePresetId;
-			try {
-				prisma.recordHistory.create({
-					data: {
-						title: this.title,
-						recordedPath: this.recordedPath,
-						recordingDateEnd: this.date,
-						encodePresetId: this.encodePresetId,
-					},
-				});
-				return;
-			} catch (error: any) {
-				throw new Error(error);
-			}
+			this.main();
 		} else {
 			throw new Error('title, recordedPath, encodePresetIdが指定されていません。');
 		}
+	}
+
+	private async main() {
+		try {
+			await this.putDB();
+		} catch (error: any) {
+			console.log;
+			throw new Error(error);
+		}
+	}
+
+	private async putDB() {
+		await prisma.recordHistory.create({
+			data: {
+				title: this.title,
+				recordedPath: this.recordedPath,
+				recordingDateEnd: this.date,
+				encodePresetId: this.encodePresetId,
+			},
+		});
+		return;
 	}
 }
