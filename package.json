@@ -27,7 +27,7 @@
 		"@typescript-eslint/eslint-plugin": "5.35.1",
 		"@typescript-eslint/parser": "5.35.1",
 		"c8": "7.12.0",
-		"eslint": "8.22.0",
+		"eslint": "8.23.0",
 		"eslint-config-google": "0.14.0",
 		"msw": "0.45.0",
 		"prisma": "4.2.1",
