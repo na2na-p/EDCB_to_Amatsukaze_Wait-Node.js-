@@ -18,19 +18,19 @@
 	"author": "na2na",
 	"license": "ISC",
 	"dependencies": {
-		"@prisma/client": "4.2.1",
+		"@prisma/client": "4.3.0",
 		"execa": "^6.1.0"
 	},
 	"devDependencies": {
 		"@swc/core": "1.2.245",
 		"@types/node": "18.7.2",
-		"@typescript-eslint/eslint-plugin": "5.36.0",
-		"@typescript-eslint/parser": "5.36.0",
+		"@typescript-eslint/eslint-plugin": "5.36.1",
+		"@typescript-eslint/parser": "5.36.1",
 		"c8": "7.12.0",
 		"eslint": "8.23.0",
 		"eslint-config-google": "0.14.0",
 		"msw": "0.45.0",
-		"prisma": "4.2.1",
+		"prisma": "4.3.0",
 		"ts-node": "10.9.1",
 		"typescript": "4.8.2",
 		"vitest": "0.22.1"
