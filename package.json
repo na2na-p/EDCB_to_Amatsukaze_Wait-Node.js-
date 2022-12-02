@@ -18,7 +18,7 @@
 	"author": "na2na",
 	"license": "ISC",
 	"dependencies": {
-		"@prisma/client": "4.7.0",
+		"@prisma/client": "4.7.1",
 		"execa": "^6.1.0"
 	},
 	"devDependencies": {
@@ -30,7 +30,7 @@
 		"eslint": "8.28.0",
 		"eslint-config-google": "0.14.0",
 		"msw": "0.49.1",
-		"prisma": "4.7.0",
+		"prisma": "4.7.1",
 		"ts-node": "10.9.1",
 		"typescript": "4.9.3",
 		"vitest": "0.25.3"
