@@ -26,7 +26,7 @@
 		"@types/node": "18.17.0",
 		"@typescript-eslint/eslint-plugin": "6.2.0",
 		"@typescript-eslint/parser": "6.2.0",
-		"c8": "8.0.0",
+		"c8": "8.0.1",
 		"eslint": "8.45.0",
 		"eslint-config-google": "0.14.0",
 		"msw": "1.2.3",
