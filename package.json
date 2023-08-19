@@ -19,7 +19,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@prisma/client": "5.1.1",
-		"execa": "^7.0.0"
+		"execa": "^8.0.0"
 	},
 	"devDependencies": {
 		"@swc/core": "1.3.78",
