@@ -18,7 +18,7 @@
 	"author": "na2na",
 	"license": "ISC",
 	"dependencies": {
-		"@prisma/client": "5.4.1",
+		"@prisma/client": "5.4.2",
 		"execa": "^8.0.0"
 	},
 	"devDependencies": {
