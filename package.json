@@ -31,7 +31,7 @@
 		"eslint-config-google": "0.14.0",
 		"msw": "2.0.10",
 		"prisma": "5.7.0",
-		"ts-node": "10.9.1",
+		"ts-node": "10.9.2",
 		"typescript": "5.3.3",
 		"vitest": "1.0.2"
 	}
