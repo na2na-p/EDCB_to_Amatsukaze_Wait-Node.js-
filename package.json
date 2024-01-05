@@ -29,7 +29,7 @@
 		"c8": "9.0.0",
 		"eslint": "8.56.0",
 		"eslint-config-google": "0.14.0",
-		"msw": "2.0.11",
+		"msw": "2.0.12",
 		"prisma": "5.7.1",
 		"ts-node": "10.9.2",
 		"typescript": "5.3.3",
