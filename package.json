@@ -23,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@swc/core": "1.4.1",
-		"@types/node": "20.11.18",
+		"@types/node": "20.11.19",
 		"@typescript-eslint/eslint-plugin": "7.0.1",
 		"@typescript-eslint/parser": "7.0.1",
 		"c8": "9.1.0",
